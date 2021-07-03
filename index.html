@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Book Shop | Yuldashoff_M</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+        integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+        crossorigin="anonymous" />
+    <link id="favicon" rel="icon" href="https://developer.nytimes.com/logos/favicon.ico?v=1600101624226"
+        type="image/png">
+
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="py-3 shadow bg-white">
+        <div class="container-fluid d-flex justify-content-between align-items-center">
+            <img src="https://developer.nytimes.com/logos/logo?v=1600101622804" class="jogo" alt="">
+            <div class="d-flex">
+                <input type="text" id="searchInput" class="me-2 form-control">
+                <button class="btn btn-dark" onclick="search()"><i class="fas fa-search"></i></button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Section -->
+    <section class="container-fluid py-2 layout d-flex">
+        <div class="sidebar pe-3">
+            <div class="bg-white shadow rounded p-3 py-4">
+                <h3 class="mb-4">Bo'limlar</h3>
+                <div class="spinner-border" role="status" id="loading">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+                <div class="py-3 " id="error">
+                    <h3 class="text-danger"><i class="fas fa-times"></i>Error</h3>
+                </div>
+                <div class="list-group " id="list">
+                    <a href="#" class="list-group-item list-group-item-action 
+                    d-flex justify-content-between align-items-center active">
+                        Combined Print and E-Book Fiction
+                        <p class="d-flex justify-content-between align-items-center m-0 mt-2">
+
+
+                            <span>2021-06-20</span>
+                            <span class="badge bg-warning text-dark ms-3">WEEKLY</span>
+                        </p>
+                    </a>
+
+
+                </div>
+            </div>
+        </div>
+        <div class="content">
+            <div class="bg-white shadow rounded p-3 py-4">
+                <h3 class="mb-3">Kitoblar </h3>
+                <h4 id="list-name">Bo'lim: <span></span></h4>
+                <div class="  spinner-border" role="status" id="loading2">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+                <div class="py-3 d-none" id="error2">
+                    <h3 class="text-danger"><i class="fas fa-times"></i>Error</h3>
+                </div>
+                <div class="row" id="books">
+
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="productDetail" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Product Details</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="modalBody">
+                    <div class="row mb-4">
+                        <div class="col-md-5">
+                            <img src="https://storage.googleapis.com/du-prd/books/images/9781728251035.jpg"
+                                class="dddd rounded" alt="Book image">
+                        </div>
+                        <div class="col-md-7">
+                            <h3 class="text-info">Book Title: FREED</h3>
+
+                            <p>Author: <span class="fw-bold">E.L. James</span></p>
+
+                            <p class="text-secondary">The final chapter of the Fifty Shades as Told by Christian
+                                trilogy delves into the wedding between Christian Grey and
+                                Anastasia Steele
+                            </p>
+
+                            <p>Isbn10: None</p>
+                            <p>Isbn13: 9781728251059</p>
+                            <p>Publisher: Bloom</p>
+                            <p>Price: <span class="text-warning">0.00</span></p>
+                            <p>Rank last week: 2</p>
+                            <p>Weeks on list: 5</p>
+                        </div>
+                    </div>
+
+                    <p class="fw-bold">Buy links: </p>
+                    <div class="list-group buy-links list-group-horizontal flex-wrap">
+                        <a href="#" class="list-group-item list-group-item-action">Amazon</a>
+
+                    </div>
+
+                    <div>
+                        <img class="w-25" src="" alt="">
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary rounded" data-bs-dismiss="modal">Close</button>
+                    <a href="#" type="button" class="btn btn-primary rounded">Buy</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="pb-4 mt-5 bg-light">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-7 col-md-11 pl-lg-6" data-aos="fade-right" data-aos-duration="800">
+                    <div class="row py-4">
+                        <div class="col-sm-3 col-xs-6 mt-2">
+                            <p class="mb-3 ms-4">Help menu</p>
+                            <ul class="my-3">
+                                <li><a href="#">About</a></li>
+                                <li><a href="#">Features</a></li>
+                                <li><a href="#">Works</a></li>
+                                <li><a href="#">Career</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-sm-4 col-xs-6">
+                            <ul class="pl-0 marg pt-2">
+                                <li><a href="#">Contact</a></li>
+                                <li><a href="#">Help & Support</a></li>
+                                <li><a href="#">Privacy Policy</a></li>
+                                <li><a href="#">Terms & Conditions</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-sm-5 col-xs-6 pl-lg-0 mt-2">
+                            <p class="mb-3 ms-4">Products</p>
+                            <ul class="my-3 py-0 pl-0">
+                                <li><a href="#">Essential Landing Page</a></li>
+                                <li><a href="#">Alpha Dashboard Pro</a></li>
+                                <li><a href="#">Karnel Admin Dashboard</a></li>
+                                <li><a href="#">Gray UI Kit</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div id="bg-rang" class="col-lg-5 col-md-8 col-sm-12 mt-3 px-5 shadow" data-aos="fade-left"
+                    data-aos-duration="800">
+                    <p class="mb-1">Subscribe to our newsletter</p>
+                    <h6 class="mb-4">Subscribe to get lastest offers, news and events announcements. No spam in your
+                        inbox.</h6>
+                    <div class="input-group-prepend">
+                    </div>
+
+                    <input type="text" class="form-control my-3" aria-describedby="button-addon2"
+                        id="inlineFormInputGroupUsername" placeholder="Username">
+                    <input type="text" class="form-control" placeholder="Phone Number" aria-label="Recipient's username"
+                        aria-describedby="button-addon2">
+                    <div class="pt-3 d-flex justify-content-center align-items-center">
+                        <button class="btn btn-outline-secondary bg-primary text-light form-control" type="button"
+                            id="button-addon2">Submit</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+        crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="main.js"></script>
+</body>
+
+</html>
